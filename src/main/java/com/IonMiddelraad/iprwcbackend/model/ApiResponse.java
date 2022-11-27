@@ -1,4 +1,4 @@
-package model;
+package com.IonMiddelraad.iprwcbackend.model;
 
 import org.springframework.http.HttpStatus;
 
