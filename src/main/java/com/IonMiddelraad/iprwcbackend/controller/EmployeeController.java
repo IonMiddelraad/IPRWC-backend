@@ -38,18 +38,18 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeDao.saveToDatabase(employee));
     }
 
-//    @PutMapping("/employee/{id}")
-//    public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id") Long employeeId,
-//                                                   @RequestBody Employee employeeDetails) throws ResourceNotFoundException {
-//        Employee employee = employeeDao.findById(employeeId)
-//                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
-//
-//        employee.setEmailId(employeeDetails.getEmailId());
-//        employee.setLastName(employeeDetails.getLastName());
-//        employee.setFirstName(employeeDetails.getFirstName());
-//        Employee updatedEmployee = EmployeeDao.saveToDatabase(employee);
-//        return ResponseEntity.ok(updatedEmployee);
-//    }
+    @PutMapping("/employee/{id}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id") Long employeeId,
+                                                   @RequestBody Employee employeeDetails) throws ResourceNotFoundException {
+        Employee employee = employeeDao.findById(employeeId)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
+
+        employee.setEmailId(employeeDetails.getEmailId());
+        employee.setLastName(employeeDetails.getLastName());
+        employee.setFirstName(employeeDetails.getFirstName());
+        Employee updatedEmployee = employeeDao.saveToDatabase(employee);
+        return ResponseEntity.ok(updatedEmployee);
+    }
 
 
     @RequestMapping(value = "/sayhello", method = RequestMethod.GET)
