@@ -1,13 +1,12 @@
 package com.IonMiddelraad.iprwcbackend.model;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
-public class ApiResponse<Type> {
+public class ApiResponseData<Type> {
     private HttpStatus code;
     private Type payload;
 
-    public ApiResponse(HttpStatus code, Type payload) {
+    public ApiResponseData(HttpStatus code, Type payload) {
         this.code = code;
         this.payload = payload;
     }
@@ -26,11 +25,5 @@ public class ApiResponse<Type> {
 
     public void setCode(HttpStatus code) {
         this.code = code;
-    }
-
-    public ResponseEntity getResponse() {
-        ApiResponseData apiResponseData = new ApiResponseData(this.getCode(), this.getPayload());
-
-        return new ResponseEntity(apiResponseData, this.getCode());
     }
 }
