@@ -1,6 +1,6 @@
 package com.IonMiddelraad.iprwcbackend.dto;
 
-import com.example.IPSEN2_GROEP7.model.Role;
+import com.IonMiddelraad.iprwcbackend.model.Role;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
