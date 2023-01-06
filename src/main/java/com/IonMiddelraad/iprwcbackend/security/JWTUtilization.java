@@ -19,7 +19,7 @@ public class JWTUtilization {
 
     public String generateToken(String email, String roles) throws IllegalArgumentException, JWTCreationException {
         return JWT.create()
-                .withSubject("Employee Details")
+                .withSubject("User Details")
                 .withClaim("email", email)
                 .withClaim("roles", roles)
                 .withIssuedAt(new Date())
@@ -29,7 +29,7 @@ public class JWTUtilization {
 
     public String validateTokenAndRetrieveSubject(String token)throws JWTVerificationException {
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secret))
-                .withSubject("Employee Details")
+                .withSubject("User Details")
                 .withIssuer("Enter your details: ")
                 .build();
         DecodedJWT jwt = verifier.verify(token);

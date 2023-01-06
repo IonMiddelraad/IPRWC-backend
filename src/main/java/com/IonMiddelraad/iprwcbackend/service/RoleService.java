@@ -33,13 +33,9 @@ public class RoleService {
         defaultRoles.add(new Role("Admin", "The guy that can break it all",
                 "%s".formatted(
                         Permission.ADMIN)));
-        defaultRoles.add(new Role("Secretary", "Can plan reservations for others",
-                "%s,%s,%s".formatted(
-                        Permission.RESERVATION_WRITE_OTHER, Permission.RESERVATION_DELETE_OTHER, Permission.RESERVATION_UPDATE_OTHER)));
         defaultRoles.add(new Role("User", "The normal guy",
                 "%s,%s,%s,%s,%s".formatted(
-                        Permission.AUTHENTICATE, Permission.RESERVATION_READ, Permission.RESERVATION_WRITE,
-                        Permission.RESERVATION_UPDATE, Permission.RESERVATION_DELETE)));
+                        Permission.AUTHENTICATE)));
         defaultRoles.add(new Role("Disabled user", "Can't do anything",
                 "%s".formatted(
                         Permission.NONE)));
