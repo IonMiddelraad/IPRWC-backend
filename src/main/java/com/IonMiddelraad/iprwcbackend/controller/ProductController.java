@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static java.util.Objects.isNull;
@@ -33,6 +34,26 @@ public class ProductController {
             return new ApiResponse<>(HttpStatus.NOT_FOUND, "The product could not be found").getResponse();
         }
         return new ApiResponse<>(HttpStatus.OK, product).getResponse();
+    }
+
+    @PutMapping(value = "/update/{product_id}")
+    @ResponseBody
+    public ResponseEntity updateProduct(@PathVariable("product_id") int product_id,
+                                        @Valid @RequestBody Product updatedProduct) {
+        Product oldProduct = this.productDAO.getById(product_id);
+        if (isNull(oldProduct)) {
+            return new ApiResponse<>(HttpStatus.NOT_FOUND, "The product could not be found").getResponse();
+        } else {
+            this.productDAO.update(updatedProduct);
+            return new ApiResponse<>(HttpStatus.OK, updatedProduct).getResponse();
+        }
+    }
+
+    @PostMapping(value = "/add")
+    @ResponseBody
+    public ResponseEntity addProduct(@Valid @RequestBody Product newProduct) {
+        this.productDAO.store(newProduct);
+        return new ApiResponse<>(HttpStatus.CREATED, newProduct).getResponse();
     }
 
 }

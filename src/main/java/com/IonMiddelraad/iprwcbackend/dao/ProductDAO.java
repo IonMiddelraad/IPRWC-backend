@@ -23,4 +23,14 @@ public class ProductDAO {
     public List<Product> getAll() {
         return this.productRepository.findAll();
     }
+
+    public Product update(Product product) {
+        this.productRepository.update(product.getName(), product.getDescription(), product.getPrice(), product.getId());
+        return product;
+    }
+
+    public Product store(Product product) {
+        this.productRepository.save(product);
+        return product;
+    }
 }
