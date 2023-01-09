@@ -11,8 +11,8 @@ import javax.transaction.Transactional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    @Transactional
-    @Modifying
-    @Query(value = "UPDATE product p SET p.name = :name, p.description = :description, p.price = :price WHERE p.id = :product_id")
-    void update(String name, String description, float price, int product_id);
+//    @Transactional
+//    @Modifying
+//    @Query(value = "UPDATE product p SET p.name = :name, p.description = :description, p.price = :price WHERE p.id = :product_id")
+//    void update(String name, String description, float price, int product_id);
 }

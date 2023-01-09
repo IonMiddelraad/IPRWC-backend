@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Component
 public class ProductDAO {
+
     private final ProductRepository productRepository;
 
     public ProductDAO(ProductRepository productRepository) {
@@ -24,13 +25,11 @@ public class ProductDAO {
         return this.productRepository.findAll();
     }
 
-    public Product update(Product product) {
-        this.productRepository.update(product.getName(), product.getDescription(), product.getPrice(), product.getId());
-        return product;
-    }
+//    public void update(Product product) {
+//        this.productRepository.update(product.getName(), product.getDescription(), product.getPrice(), product.getId());
+//    }
 
-    public Product store(Product product) {
+    public void store(Product product) {
         this.productRepository.save(product);
-        return product;
     }
 }
