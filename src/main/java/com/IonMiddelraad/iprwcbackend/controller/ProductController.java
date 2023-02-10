@@ -36,19 +36,6 @@ public class ProductController {
         return new ApiResponse<>(HttpStatus.OK, product).getResponse();
     }
 
-//    @PutMapping(value = "/update/{product_id}")
-//    @ResponseBody
-//    public ResponseEntity updateProduct(@PathVariable("product_id") int product_id,
-//                                        @RequestBody Product updatedProduct) {
-//        Product oldProduct = this.productDAO.getById(product_id);
-//        if (isNull(oldProduct)) {
-//            return new ApiResponse<>(HttpStatus.NOT_FOUND, "The product could not be found").getResponse();
-//        } else {
-//            this.productDAO.update(updatedProduct);
-//            return new ApiResponse<>(HttpStatus.OK, updatedProduct).getResponse();
-//        }
-//    }
-
     @PostMapping(value = "/add")
     @ResponseBody
     public ResponseEntity addProduct(@RequestBody Product newProduct) {
