@@ -31,34 +31,6 @@ public class RoleFilter extends OncePerRequestFilter {
         this.routePermissions.put("PUT /api/user/*",
                 new String[]{
                         String.valueOf(Permission.ADMIN)});
-        this.routePermissions.put("GET /api/user/location/*",
-                new String[]{
-                        String.valueOf(Permission.AUTHENTICATE),
-                });
-        this.routePermissions.put("GET /api/user/location",
-                new String[]{
-                        String.valueOf(Permission.AUTHENTICATE)});
-        this.routePermissions.put("GET /api/user/location/*/rooms",
-                new String[]{
-                        String.valueOf(Permission.AUTHENTICATE)});
-        this.routePermissions.put("GET /api/user/location/*/workrooms",
-                new String[]{
-                        String.valueOf(Permission.AUTHENTICATE)});
-        this.routePermissions.put("GET /api/user/location/*/meetingrooms",
-                new String[]{
-                        String.valueOf(Permission.AUTHENTICATE)});
-        this.routePermissions.put("GET /api/user/meetingroom",
-                new String[]{
-                        String.valueOf(Permission.AUTHENTICATE)});
-        this.routePermissions.put("GET /api/user/meetingroom/*",
-                new String[]{
-                        String.valueOf(Permission.AUTHENTICATE)});
-        this.routePermissions.put("PUT /api/user/meetingroom/*",
-                new String[]{
-                        String.valueOf(Permission.ADMIN)});
-        this.routePermissions.put("GET /api/user/reservations/archive",
-                new String[]{
-                        String.valueOf(Permission.ADMIN)});
         this.routePermissions.put("GET /api/user/role",
                 new String[]{
                         String.valueOf(Permission.ADMIN)});
@@ -74,13 +46,13 @@ public class RoleFilter extends OncePerRequestFilter {
         this.routePermissions.put("DELETE /api/user/role/*",
                 new String[]{
                         String.valueOf(Permission.ILLEGAL)});
-        this.routePermissions.put("GET /api/user/workroom",
+        this.routePermissions.put("GET /api/user/product/all",
                 new String[]{
                         String.valueOf(Permission.AUTHENTICATE)});
-        this.routePermissions.put("GET /api/user/workroom/*",
+        this.routePermissions.put("GET /api/user/product/*",
                 new String[]{
                         String.valueOf(Permission.AUTHENTICATE)});
-        this.routePermissions.put("PUT /api/user/workroom/*",
+        this.routePermissions.put("PUT /api/user/product/*",
                 new String[]{
                         String.valueOf(Permission.ADMIN)});
     }

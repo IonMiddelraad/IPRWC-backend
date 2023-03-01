@@ -34,7 +34,7 @@ public class RoleService {
                 "%s".formatted(
                         Permission.ADMIN)));
         defaultRoles.add(new Role("User", "The normal guy",
-                "%s,%s,%s,%s,%s".formatted(
+                "%s".formatted(
                         Permission.AUTHENTICATE)));
         defaultRoles.add(new Role("Disabled user", "Can't do anything",
                 "%s".formatted(

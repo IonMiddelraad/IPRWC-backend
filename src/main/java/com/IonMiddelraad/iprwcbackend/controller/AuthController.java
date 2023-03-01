@@ -45,7 +45,7 @@ public class AuthController {
         employee.setPassword(EncryptionService.decrypt(employee.getPassword()));
 
         List<Role> roles = new ArrayList<>();
-        int userRoleIndex = 2;
+        int userRoleIndex = 1;
         roles.add(this.roleService.getRoles().get(userRoleIndex));
         employee.setRoles(roles);
 
