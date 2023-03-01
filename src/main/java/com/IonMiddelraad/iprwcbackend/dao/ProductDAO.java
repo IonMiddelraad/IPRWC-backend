@@ -25,10 +25,6 @@ public class ProductDAO {
         return this.productRepository.findAll();
     }
 
-//    public void update(Product product) {
-//        this.productRepository.update(product.getName(), product.getDescription(), product.getPrice(), product.getId());
-//    }
-
     public void store(Product product) {
         this.productRepository.save(product);
     }

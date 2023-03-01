@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -22,6 +23,9 @@ public class Product {
 
     @NotBlank
     private float price;
+
+//    @ManyToMany(mappedBy = "productList")
+//    private List<Order> orderList;
 
     public Product(){}
 
