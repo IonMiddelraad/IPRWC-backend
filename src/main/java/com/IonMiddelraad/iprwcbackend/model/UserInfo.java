@@ -17,6 +17,10 @@ public class UserInfo {
         return id;
     }
 
+    public void setId(int id) {
+
+    }
+
     public String getName() {
         return name;
     }
