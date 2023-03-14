@@ -15,7 +15,11 @@ import static java.util.Objects.isNull;
 @RequestMapping(value = "/api/user/order")
 public class OrderController {
 
-    private  OrderDAO orderDAO;
+    private OrderDAO orderDAO;
+
+    public OrderController(OrderDAO orderDAO) {
+        this.orderDAO = orderDAO;
+    }
 
     @GetMapping(value = "/all")
     @ResponseBody

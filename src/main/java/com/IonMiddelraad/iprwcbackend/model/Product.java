@@ -24,15 +24,19 @@ public class Product {
     @NotBlank
     private float price;
 
+    @NotBlank
+    private String image;
+
 //    @ManyToMany(mappedBy = "productList")
 //    private List<Order> orderList;
 
     public Product(){}
 
-    public Product(String name, String description, float price) {
+    public Product(String name, String description, float price, String image) {
         this.description = description;
         this.name = name;
         this.price = price;
+        this.image = image;
     }
 
     public int getId() {
@@ -61,5 +65,13 @@ public class Product {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

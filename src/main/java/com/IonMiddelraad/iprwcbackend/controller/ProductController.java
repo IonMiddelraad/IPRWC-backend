@@ -18,6 +18,10 @@ public class ProductController {
 
     private ProductDAO productDAO;
 
+    public ProductController(ProductDAO productDAO) {
+        this.productDAO = productDAO;
+    }
+
     @GetMapping(value = "/all")
     @ResponseBody
     public ResponseEntity getAllProducts() {
