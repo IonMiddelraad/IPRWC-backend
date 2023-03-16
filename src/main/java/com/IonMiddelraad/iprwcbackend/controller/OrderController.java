@@ -3,10 +3,12 @@ package com.IonMiddelraad.iprwcbackend.controller;
 import com.IonMiddelraad.iprwcbackend.dao.OrderDAO;
 import com.IonMiddelraad.iprwcbackend.model.ApiResponse;
 import com.IonMiddelraad.iprwcbackend.model.Order;
+import com.IonMiddelraad.iprwcbackend.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Objects.isNull;
@@ -25,7 +27,15 @@ public class OrderController {
     @ResponseBody
     public ResponseEntity getAllOrders() {
         List<Order> orderList = this.orderDAO.getAll();
-        return new ApiResponse<>(HttpStatus.OK, orderList).getResponse();
+
+        List<Order> safeOrderList = new ArrayList<>();
+        for (Order order : orderList) {
+            safeOrderList.add(new Order(order.getId(),
+                    new User(order.getUser().getId(), order.getUser().getName()),
+                    order.getProductList()));
+        }
+
+        return new ApiResponse<>(HttpStatus.OK, safeOrderList).getResponse();
     }
 
     @GetMapping(value = "/{order_id}")

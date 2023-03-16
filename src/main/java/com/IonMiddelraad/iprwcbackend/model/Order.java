@@ -26,10 +26,11 @@ public class Order {
     @NotBlank
     private List<Product> productList;
 
+    public Order() {}
 
-
-    public Order(User userInfo, List<Product> productList) {
-        this.user = userInfo;
+    public Order(int id, User user, List<Product> productList) {
+        this.id = id;
+        this.user = user;
         this.productList = productList;
     }
 
@@ -37,12 +38,12 @@ public class Order {
         return id;
     }
 
-    public User getUserInfo() {
+    public User getUser() {
         return user;
     }
 
-    public void setUserInfo(User userInfo) {
-        this.user = userInfo;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<Product> getProductList() {
