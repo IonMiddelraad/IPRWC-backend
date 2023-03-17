@@ -3,6 +3,7 @@ package com.IonMiddelraad.iprwcbackend.controller;
 import com.IonMiddelraad.iprwcbackend.dao.UserDAO;
 import com.IonMiddelraad.iprwcbackend.dto.UserUpdateDTO;
 import com.IonMiddelraad.iprwcbackend.model.ApiResponse;
+import com.IonMiddelraad.iprwcbackend.model.Order;
 import com.IonMiddelraad.iprwcbackend.model.User;
 import com.IonMiddelraad.iprwcbackend.response.types.Message;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.util.Objects.isNull;
 
@@ -25,7 +29,9 @@ public class UserController {
 
     @GetMapping("/info")
     public User getInfo(){
-        return userDAO.getEmployeeDetails();
+        User foundUser = userDAO.getEmployeeDetails();
+        User safeUser = new User(foundUser.getId(), foundUser.getName(), foundUser.getEmail(), foundUser.getRoles());
+        return safeUser;
     }
 
     @RequestMapping(value = "{employee_id}", method = RequestMethod.PUT)

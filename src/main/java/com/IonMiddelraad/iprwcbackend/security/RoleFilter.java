@@ -55,6 +55,12 @@ public class RoleFilter extends OncePerRequestFilter {
         this.routePermissions.put("PUT /api/user/product/*",
                 new String[]{
                         String.valueOf(Permission.ADMIN)});
+        this.routePermissions.put("PUT /api/user/order/*",
+                new String[]{
+                        String.valueOf(Permission.ADMIN)});
+        this.routePermissions.put("PUT /api/user/order/*",
+                new String[]{
+                        String.valueOf(Permission.AUTHENTICATE)});
     }
 
     @Override

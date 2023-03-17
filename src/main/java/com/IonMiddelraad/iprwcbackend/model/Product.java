@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -21,7 +22,7 @@ public class Product {
     @NotBlank
     private String description;
 
-    @NotBlank
+    @NotNull
     private float price;
 
     @NotBlank
