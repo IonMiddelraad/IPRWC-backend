@@ -1,5 +1,6 @@
 package com.IonMiddelraad.iprwcbackend.dao;
 
+import com.IonMiddelraad.iprwcbackend.model.Order;
 import com.IonMiddelraad.iprwcbackend.model.Product;
 import com.IonMiddelraad.iprwcbackend.repositories.ProductRepository;
 import org.springframework.stereotype.Component;
@@ -27,5 +28,9 @@ public class ProductDAO {
 
     public void store(Product product) {
         this.productRepository.save(product);
+    }
+
+    public void delete(Product product) {
+        this.productRepository.delete(product);
     }
 }

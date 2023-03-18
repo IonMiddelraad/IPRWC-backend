@@ -28,4 +28,8 @@ public class OrderDAO {
     public void store(Order order) {
         this.orderRepository.save(order);
     }
+
+    public void delete(Order order) {
+        this.orderRepository.delete(order);
+    }
 }

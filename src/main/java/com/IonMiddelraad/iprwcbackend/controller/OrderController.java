@@ -64,4 +64,15 @@ public class OrderController {
         this.orderDAO.store(newOrder);
         return new ApiResponse<>(HttpStatus.CREATED, newOrder).getResponse();
     }
+
+    @DeleteMapping(value = "/{order_id}")
+    @ResponseBody
+    public ResponseEntity deleteOrder(@PathVariable("order_id") int order_id) {
+        Order order = this.orderDAO.getById(order_id);
+        if (isNull(order)) {
+            return new ApiResponse<>(HttpStatus.NOT_FOUND, "The order could not be found").getResponse();
+        }
+        this.orderDAO.delete(order);
+        return new ApiResponse<>(HttpStatus.NO_CONTENT, "The order has been removed").getResponse();
+    }
 }
