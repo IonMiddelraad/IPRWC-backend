@@ -81,7 +81,7 @@ public class AuthController {
         return new ApiResponse<>(HttpStatus.OK, productList).getResponse();
     }
 
-    @GetMapping(value = "/all")
+    @GetMapping(value = "order/all")
     @ResponseBody
     public ResponseEntity getAllOrders() {
         List<Order> orderList = this.orderDAO.getAll();
