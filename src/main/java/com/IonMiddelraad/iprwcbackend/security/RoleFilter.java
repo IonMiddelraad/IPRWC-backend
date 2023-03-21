@@ -46,16 +46,13 @@ public class RoleFilter extends OncePerRequestFilter {
         this.routePermissions.put("DELETE /api/user/role/*",
                 new String[]{
                         String.valueOf(Permission.ILLEGAL)});
-        this.routePermissions.put("GET /api/user/product/all",
-                new String[]{
-                        String.valueOf(Permission.AUTHENTICATE)});
-        this.routePermissions.put("GET /api/user/product/*",
-                new String[]{
-                        String.valueOf(Permission.AUTHENTICATE)});
+//        this.routePermissions.put("GET /api/user/product/all",
+//                new String[]{
+//                        String.valueOf(Permission.AUTHENTICATE)});
+//        this.routePermissions.put("GET /api/user/product/*",
+//                new String[]{
+//                        String.valueOf(Permission.AUTHENTICATE)});
         this.routePermissions.put("PUT /api/user/product/*",
-                new String[]{
-                        String.valueOf(Permission.ADMIN)});
-        this.routePermissions.put("PUT /api/user/order/*",
                 new String[]{
                         String.valueOf(Permission.ADMIN)});
         this.routePermissions.put("PUT /api/user/order/*",
@@ -95,34 +92,6 @@ public class RoleFilter extends OncePerRequestFilter {
             }
 
             String method = request.getMethod();
-//            if((Objects.equals(method, "DELETE") || Objects.equals(method, "PUT"))
-//                    && !Arrays.asList(needed).contains(String.valueOf(Permission.ADMIN))) {
-//
-//                //Getting the meetingroomReservations and workroomReservations of the user
-//                List<MeetingRoomReservation> userMeetingRoomReservations = this.meetingRoomReservationDAO.userMeetingRooms(employee.getId());
-//                List<WorkRoomReservation> userWorkRoomReservations = this.workRoomReservationDAO.userWorkRooms(employee.getId());
-//
-//                switch (method) {
-//                    case "DELETE" -> {
-//                        if (userPermissions.contains(String.valueOf(Permission.RESERVATION_DELETE_OTHER))) {
-//                            access = true;
-//                        }
-//                        int idIndex = pathVariables.size() - 1;
-//                        access = canAccess(request, access, userMeetingRoomReservations, userWorkRoomReservations, idIndex);
-//                    }
-//                    case "PUT" -> {
-//                        if (userPermissions.contains(String.valueOf(Permission.RESERVATION_UPDATE_OTHER))) {
-//                            access = true;
-//                        }
-//                        int idIndex = pathVariables.size() - 1;
-//                        access = canAccess(request, access, userMeetingRoomReservations, userWorkRoomReservations, idIndex);
-//                    }
-//                    default -> {
-//                    }
-//                }
-//            } else {
-//                access = true;
-//            }
 
             // Check if access has changed to false after the switch statement
             if(!access) {
