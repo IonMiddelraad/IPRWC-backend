@@ -1,21 +1,20 @@
 package com.IonMiddelraad.iprwcbackend.controller;
 
+import com.IonMiddelraad.iprwcbackend.dao.OrderDAO;
+import com.IonMiddelraad.iprwcbackend.dao.ProductDAO;
 import com.IonMiddelraad.iprwcbackend.dto.UserStoreDTO;
-import com.IonMiddelraad.iprwcbackend.model.LoginCredentials;
-import com.IonMiddelraad.iprwcbackend.model.Role;
-import com.IonMiddelraad.iprwcbackend.model.User;
+import com.IonMiddelraad.iprwcbackend.model.*;
 import com.IonMiddelraad.iprwcbackend.repositories.UserRepository;
 import com.IonMiddelraad.iprwcbackend.security.JWTUtilization;
 import com.IonMiddelraad.iprwcbackend.service.EncryptionService;
 import com.IonMiddelraad.iprwcbackend.service.RoleService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -31,12 +30,16 @@ public class AuthController {
     private JWTUtilization jwtUtil;
     private AuthenticationManager authManager;
     private RoleService roleService;
+    private ProductDAO productDAO;
+    private OrderDAO orderDAO;
 
-    public AuthController(UserRepository employeeRepo, JWTUtilization jwtUtil, AuthenticationManager authManager, PasswordEncoder passEncoder, RoleService roleService) {
+    public AuthController(UserRepository employeeRepo, JWTUtilization jwtUtil, AuthenticationManager authManager, PasswordEncoder passEncoder, RoleService roleService, ProductDAO productDAO, OrderDAO orderDAO) {
         this.userRepo = employeeRepo;
         this.jwtUtil = jwtUtil;
         this.authManager = authManager;
         this.roleService = roleService;
+        this.productDAO = productDAO;
+        this.orderDAO = orderDAO;
     }
 
     @PostMapping("/register")
@@ -69,5 +72,27 @@ public class AuthController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @GetMapping(value = "/product/all")
+    @ResponseBody
+    public ResponseEntity getAllProducts() {
+        List<Product> productList = this.productDAO.getAll();
+        return new ApiResponse<>(HttpStatus.OK, productList).getResponse();
+    }
+
+    @GetMapping(value = "/all")
+    @ResponseBody
+    public ResponseEntity getAllOrders() {
+        List<Order> orderList = this.orderDAO.getAll();
+
+        List<Order> safeOrderList = new ArrayList<>();
+        for (Order order : orderList) {
+            safeOrderList.add(new Order(order.getId(),
+                    new User(order.getUser().getId(), order.getUser().getName()),
+                    order.getProductList()));
+        }
+
+        return new ApiResponse<>(HttpStatus.OK, safeOrderList).getResponse();
     }
 }
